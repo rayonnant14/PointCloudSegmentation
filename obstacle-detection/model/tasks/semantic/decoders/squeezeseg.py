@@ -46,6 +46,7 @@ class Decoder(nn.Module):
     """
        Class for DarknetSeg. Subclasses PyTorch's own "nn" module
     """
+
     def __init__(self, params, stub_skips, OS=32, feature_depth=512):
         super(Decoder, self).__init__()
         self.backbone_OS = OS

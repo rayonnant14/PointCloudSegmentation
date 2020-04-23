@@ -1,0 +1,62 @@
+name: CI
+
+env:
+  PROJECT_NAME: PointCloudSegmentation
+  
+on:
+  push:
+    branches:
+      - github_workflow
+    
+jobs:
+  
+  codeStyle:
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: autopep8
+        uses: peter-evans/autopep8@v1.2.0
+        with:
+          args: --exit-code --recursive --in-place --aggressive --aggressive  .
+        
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v1.6.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_MESSAGE: autopep8 action fixes
+          COMMIT_AUTHOR_EMAIL: peter-evans@users.noreply.github.com
+          COMMIT_AUTHOR_NAME: Peter Evans
+          PULL_REQUEST_TITLE: Fixes by autopep8 action
+          PULL_REQUEST_BODY: This is an auto-generated PR with fixes by autopep8.
+          PULL_REQUEST_LABELS: autopep8, automated pr
+          PULL_REQUEST_BRANCH: autopep8-patches
+        
+      - name: Fail if autopep8 made changes
+        if: steps.autopep8.outputs.exit-code == 2
+        run: exit 1
+      
+  tests:
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: check
+        run: ls
+      
+      - name: accuracy tests
+        run: cd tests && ./evaluate_iou.py -d testdata/data -p testdata/squeezeseg-pred/ --split train
+        
+     
+  
+  CI:
+    needs: [codeStyle]
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Docker version
+        run: docker -v
+     

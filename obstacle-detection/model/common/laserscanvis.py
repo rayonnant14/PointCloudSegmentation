@@ -10,6 +10,7 @@ from common.laserscan import LaserScan, SemLaserScan
 
 class LaserScanVis:
     """Class that creates and handles a visualizer for a pointcloud"""
+
     def __init__(self,
                  scan,
                  scan_names,
