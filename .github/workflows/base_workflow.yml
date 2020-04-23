@@ -25,7 +25,7 @@ jobs:
         if: steps.autopep8.outputs.exit-code == 2
         run: exit 1
       - name : little check
-        run: pwd
+        run: ls
      
   
   CI:
