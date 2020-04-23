@@ -85,7 +85,7 @@ Example:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from common.onehot import oneHot
+from tests.onehot import oneHot
 import __init__ as booger
 
 

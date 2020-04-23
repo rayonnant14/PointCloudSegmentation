@@ -44,7 +44,7 @@ if __name__ == '__main__':
       '--data_cfg', '-dc',
       type=str,
       required=False,
-      default="config/labels/semantic-kitti.yaml",
+      default="semantic-kitti.yaml",
       help='Dataset config file. Defaults to %(default)s',
   )
   parser.add_argument(
@@ -154,6 +154,7 @@ if __name__ == '__main__':
     sequence = '{0:02d}'.format(int(sequence))
     pred_paths = os.path.join(FLAGS.predictions, "sequences",
                               sequence, "predictions")
+    
     # populate the label names
     seq_pred_names = [os.path.join(dp, f) for dp, dn, fn in os.walk(
         os.path.expanduser(pred_paths)) for f in fn if ".label" in f]
@@ -198,6 +199,8 @@ if __name__ == '__main__':
         'Acc avg {m_accuracy:.3f}\n'
         'IoU avg {m_jaccard:.3f}'.format(m_accuracy=m_accuracy,
                                          m_jaccard=m_jaccard))
+  assert(m_accuracy < 0.7)
+
   # print also classwise
   for i, jacc in enumerate(class_jaccard):
     if i not in ignore:
