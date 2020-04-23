@@ -18,7 +18,8 @@ def roi_filter_rounded(pcloud, verbose=True, **params):
 
     if verbose:
         print("Input pcloud size: {}".format(len(pcloud)))
-    pcloud["equation"] = (pcloud["x"] ** 2) / (a ** 2) + (pcloud["y"] ** 2) / (b ** 2)
+    pcloud["equation"] = (pcloud["x"] ** 2) / (a ** 2) + \
+        (pcloud["y"] ** 2) / (b ** 2)
 
     pcloud["camera"] = (
         (pcloud["z"] > params["min_z"])
@@ -94,7 +95,8 @@ def outlier_filter(tcluster, verbose=True):
         _mean, _std = tcluster["norm"].mean(), tcluster["norm"].std()
         lower, higher = _mean - 3 * _std, _mean + 3 * _std
     except BaseException:
-        tcluster["norm"] = np.sqrt(np.square(tcluster[["x", "y", "z"]]).sum(axis=1))
+        tcluster["norm"] = np.sqrt(
+            np.square(tcluster[["x", "y", "z"]]).sum(axis=1))
         _mean, _std = tcluster["norm"].mean(), tcluster["norm"].std()
         lower, higher = _mean - 3 * _std, _mean + 3 * _std
     end_time = (datetime.now() - start_time).total_seconds()
@@ -102,7 +104,8 @@ def outlier_filter(tcluster, verbose=True):
         print("Computing lower-higher bounds {}".format(end_time))
 
     start_time = datetime.now()
-    tcluster = tcluster[(tcluster["norm"] > lower) & (tcluster["norm"] < higher)]
+    tcluster = tcluster[(tcluster["norm"] > lower) &
+                        (tcluster["norm"] < higher)]
     end_time = (datetime.now() - start_time).total_seconds()
     if verbose:
         print("Applying  bounds {}".format(end_time))
@@ -170,9 +173,8 @@ def minimum_bounding_box(points):
     angles = np.unique(angles)
 
     # find rotation matrices
-    rotations = np.vstack(
-        [np.cos(angles), np.cos(angles - pi2), np.cos(angles + pi2), np.cos(angles)]
-    ).T
+    rotations = np.vstack([np.cos(angles), np.cos(
+        angles - pi2), np.cos(angles + pi2), np.cos(angles)]).T
     rotations = rotations.reshape((-1, 2, 2))
 
     # apply rotations to the hull

@@ -86,7 +86,7 @@ class CRF(nn.Module):
                                        requires_grad=False)
         self.lcn_size = torch.nn.Parameter(torch.tensor(
             [params["lcn_size"]["h"], params["lcn_size"]["w"]]),
-                                           requires_grad=False)
+            requires_grad=False)
         self.xyz_coef = torch.nn.Parameter(
             torch.tensor(params["xyz_coef"]),
             requires_grad=False).float()

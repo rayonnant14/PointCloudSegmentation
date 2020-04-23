@@ -29,8 +29,7 @@ if __name__ == '__main__':
         '-p',
         type=str,
         required=None,
-        help=
-        'Prediction dir. Same organization as dataset, but predictions in'
+        help='Prediction dir. Same organization as dataset, but predictions in'
         'each sequences "prediction" directory. No Default. If no option is set'
         ' we look for the labels in the same directory as dataset')
     parser.add_argument(
@@ -57,8 +56,7 @@ if __name__ == '__main__':
         type=int,
         required=False,
         default=None,
-        help=
-        'Limit to the first "--limit" points of each scan. Useful for'
+        help='Limit to the first "--limit" points of each scan. Useful for'
         ' evaluating single scan from aggregated pointcloud.'
         ' Defaults to %(default)s',
     )

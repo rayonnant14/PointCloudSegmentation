@@ -157,12 +157,8 @@ class borderMask(nn.Module):
         # With predicted labels won't see this problem because all the pixels belongs
         # to at least one class
         if self.background_class is not None:
-            input_tensor[:, self.
-                         include_idx] = input_tensor[:, self.
-                                                     include_idx] + input_tensor[:,
-                                                                                 self
-                                                                                 .
-                                                                                 exclude_idx]
+            input_tensor[:, self. include_idx] = input_tensor[:,
+                                                              self. include_idx] + input_tensor[:, self . exclude_idx]
 
         # C denotes a number of channels, N, H and W are dismissed
         C = input_tensor.shape[1]
