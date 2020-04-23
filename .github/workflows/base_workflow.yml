@@ -43,8 +43,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Python version
-        run: python -v
+      - name: accuracy tests
+        run: cd tests && ./evaluate_iou.py -d testdata/data -p testdata/squeezeseg-pred/ --split train
+        
      
   
   CI:
