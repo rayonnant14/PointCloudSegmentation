@@ -1,7 +1,7 @@
 name: CI
 
 env:
-  PROJECT_NAME: PointCloudSegmentation
+  PROJECT_NAME: pointcloudsegmentation
   
 on:
   push:
