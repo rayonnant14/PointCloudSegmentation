@@ -199,7 +199,7 @@ if __name__ == '__main__':
         'Acc avg {m_accuracy:.3f}\n'
         'IoU avg {m_jaccard:.3f}'.format(m_accuracy=m_accuracy,
                                          m_jaccard=m_jaccard))
-  assert(m_accuracy < 0.7)
+  assert(m_accuracy >= 0.7)
 
   # print also classwise
   for i, jacc in enumerate(class_jaccard):
