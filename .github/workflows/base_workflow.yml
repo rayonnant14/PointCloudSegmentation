@@ -7,7 +7,7 @@ env:
 on:
   push:
     branches:
-      - github_workflow
+      - feature/github_workflow
     
 jobs:
   
@@ -60,7 +60,7 @@ jobs:
      
   
   Docker_image_CI:
-    needs: [codeStyle]
+    needs: [codeStyle, tests]
     runs-on: [ubuntu-latest]
     
     steps:
