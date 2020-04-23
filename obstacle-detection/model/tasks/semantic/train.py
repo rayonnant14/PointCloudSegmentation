@@ -26,8 +26,7 @@ if __name__ == '__main__':
         '-ac',
         type=str,
         required=True,
-        help=
-        'Architecture yaml cfg file. See /config/arch for sample. No default!',
+        help='Architecture yaml cfg file. See /config/arch for sample. No default!',
     )
     parser.add_argument(
         '--data_cfg',
@@ -35,8 +34,7 @@ if __name__ == '__main__':
         type=str,
         required=False,
         default='config/labels/semantic-kitti.yaml',
-        help=
-        'Classification yaml cfg file. See /config/labels for sample. No default!',
+        help='Classification yaml cfg file. See /config/labels for sample. No default!',
     )
     parser.add_argument(
         '--log',
@@ -52,8 +50,7 @@ if __name__ == '__main__':
         type=str,
         required=False,
         default=None,
-        help=
-        'Directory to get the pretrained model. If not passed, do from scratch!'
+        help='Directory to get the pretrained model. If not passed, do from scratch!'
     )
     FLAGS, unparsed = parser.parse_known_args()
 

@@ -13,8 +13,13 @@ common = imp.reload(common)
 
 
 def pipeline(
-    scan, label, obstacle_lst, verbose=False, OBBoxes=False, exec_time=False, **params
-):
+        scan,
+        label,
+        obstacle_lst,
+        verbose=False,
+        OBBoxes=False,
+        exec_time=False,
+        **params):
     """ ROI filtering """
     ##########################################################################
     start_time = datetime.now()
@@ -65,13 +70,15 @@ def pipeline(
         """ Getting bounding boxes coord """
         #######################################################################
         start_time = datetime.now()
-        pcloud["norm"] = np.sqrt(np.square(pcloud[["x", "y", "z"]]).sum(axis=1))
+        pcloud["norm"] = np.sqrt(
+            np.square(pcloud[["x", "y", "z"]]).sum(axis=1))
         cluster_data = pd.DataFrame.from_dict(
             {"x": [], "y": [], "z": [], "cluster_id": []}
         )
         clusters = []
         for _id in sorted(pcloud["cluster_id"].unique()):
-            if _id == -1 or not 50 < len(pcloud[pcloud["cluster_id"] == _id]) < 5000:
+            if _id == - \
+                    1 or not 50 < len(pcloud[pcloud["cluster_id"] == _id]) < 5000:
                 continue
             tcluster = pcloud[pcloud["cluster_id"] == _id]
             tcluster = common.outlier_filter(tcluster, verbose=False)

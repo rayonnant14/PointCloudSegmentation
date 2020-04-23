@@ -41,8 +41,7 @@ if __name__ == '__main__':
         type=str,
         default=None,
         required=False,
-        help=
-        'Alternate location for labels, to use predictions folder. '
+        help='Alternate location for labels, to use predictions folder. '
         'Must point to directory containing the predictions in the proper format '
         ' (see readme)'
         'Defaults to %(default)s',
@@ -53,8 +52,7 @@ if __name__ == '__main__':
         dest='draw_clusters',
         default=False,
         action='store_true',
-        help=
-        'Use 8 vertex coordinates of oriented bounding box to visualize cluster. Defaults to %(default)s',
+        help='Use 8 vertex coordinates of oriented bounding box to visualize cluster. Defaults to %(default)s',
     )
 
     parser.add_argument(
@@ -63,8 +61,7 @@ if __name__ == '__main__':
         dest='use_bbox_measurements',
         default=False,
         action='store_true',
-        help=
-        'Use width, depth, height, center coordinate and angle of rotation of oriented bounding box to visualize cluster . Defaults to %(default)s',
+        help='Use width, depth, height, center coordinate and angle of rotation of oriented bounding box to visualize cluster . Defaults to %(default)s',
     )
 
     parser.add_argument(
@@ -82,8 +79,7 @@ if __name__ == '__main__':
         dest='use_roi_filter',
         default=False,
         action='store_true',
-        help=
-        'Use roi filter to visualize only 3d points used for clustering . Defaults to %(default)s',
+        help='Use roi filter to visualize only 3d points used for clustering . Defaults to %(default)s',
     )
 
     parser.add_argument(
@@ -107,8 +103,7 @@ if __name__ == '__main__':
         dest='ignore_safety',
         default=False,
         action='store_true',
-        help=
-        'Normally you want the number of labels and ptcls to be the same,'
+        help='Normally you want the number of labels and ptcls to be the same,'
         ', but if you are not done inferring this is not the case, so this disables'
         ' that safety.'
         'Defaults to %(default)s',

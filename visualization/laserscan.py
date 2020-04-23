@@ -9,7 +9,14 @@ class LaserScan:
 
     EXTENSIONS_SCAN = [".bin"]
 
-    def __init__(self, project=False, H=64, W=1024, fov_up=3.0, fov_down=-25.0):
+    def __init__(
+            self,
+            project=False,
+            H=64,
+            W=1024,
+            fov_up=3.0,
+            fov_down=-
+            25.0):
         self.project = project
         self.proj_H = H
         self.proj_W = W
@@ -20,19 +27,23 @@ class LaserScan:
     def reset(self):
         """ Reset scan members. """
         self.points = np.zeros((0, 3), dtype=np.float32)  # [m, 3]: x, y, z
-        self.remissions = np.zeros((0, 1), dtype=np.float32)  # [m ,1]: remission
+        self.remissions = np.zeros(
+            (0, 1), dtype=np.float32)  # [m ,1]: remission
 
         # projected range image - [H,W] range (-1 is no data)
-        self.proj_range = np.full((self.proj_H, self.proj_W), -1, dtype=np.float32)
+        self.proj_range = np.full(
+            (self.proj_H, self.proj_W), -1, dtype=np.float32)
 
         # unprojected range (list of depths for each point)
         self.unproj_range = np.zeros((0, 1), dtype=np.float32)
 
         # projected point cloud xyz - [H,W,3] xyz coord (-1 is no data)
-        self.proj_xyz = np.full((self.proj_H, self.proj_W, 3), -1, dtype=np.float32)
+        self.proj_xyz = np.full(
+            (self.proj_H, self.proj_W, 3), -1, dtype=np.float32)
 
         # projected remission - [H,W] intensity (-1 is no data)
-        self.proj_remission = np.full((self.proj_H, self.proj_W), -1, dtype=np.float32)
+        self.proj_remission = np.full(
+            (self.proj_H, self.proj_W), -1, dtype=np.float32)
 
         # projected index (for each pixel, what I am in the pointcloud)
         # [H,W] index (-1 is no data)
@@ -195,7 +206,8 @@ class SemLaserScan(LaserScan):
             for key, data in sem_color_dict.items():
                 if key + 1 > max_sem_key:
                     max_sem_key = key + 1
-            self.sem_color_lut = np.zeros((max_sem_key + 100, 3), dtype=np.float32)
+            self.sem_color_lut = np.zeros(
+                (max_sem_key + 100, 3), dtype=np.float32)
             for key, value in sem_color_dict.items():
                 self.sem_color_lut[key] = np.array(value, np.float32) / 255.0
         else:
@@ -231,11 +243,13 @@ class SemLaserScan(LaserScan):
 
         # semantic labels
         self.sem_label = np.zeros((0, 1), dtype=np.int32)  # [m, 1]: label
-        self.sem_label_color = np.zeros((0, 3), dtype=np.float32)  # [m ,3]: color
+        self.sem_label_color = np.zeros(
+            (0, 3), dtype=np.float32)  # [m ,3]: color
 
         # instance labels
         self.inst_label = np.zeros((0, 1), dtype=np.int32)  # [m, 1]: label
-        self.inst_label_color = np.zeros((0, 3), dtype=np.float32)  # [m ,3]: color
+        self.inst_label_color = np.zeros(
+            (0, 3), dtype=np.float32)  # [m ,3]: color
 
         # projection color with semantic labels
         self.proj_sem_label = np.zeros(
@@ -288,7 +302,8 @@ class SemLaserScan(LaserScan):
         else:
             print("Points shape: ", self.points.shape)
             print("Label shape: ", label.shape)
-            raise ValueError("Scan and Label don't contain same number of points")
+            raise ValueError(
+                "Scan and Label don't contain same number of points")
 
         # sanity check
         assert (self.sem_label + (self.inst_label << 16) == label).all()
@@ -307,9 +322,8 @@ class SemLaserScan(LaserScan):
 
         vec2_x = 5
         vec2_y = 0
-        cos_angle = (vec1_x * vec2_x + vec1_y * vec2_y) / (
-            (np.sqrt(vec1_x ** 2 + vec1_y ** 2)) * (np.sqrt(vec2_x ** 2 + vec2_y ** 2))
-        )
+        cos_angle = (vec1_x * vec2_x + vec1_y * vec2_y) / ((np.sqrt(vec1_x **
+                                                                    2 + vec1_y ** 2)) * (np.sqrt(vec2_x ** 2 + vec2_y ** 2)))
 
         if (cos_angle >= -1) & (cos_angle <= 1):
             angle = np.degrees(np.arccos(cos_angle))
@@ -345,8 +359,11 @@ class SemLaserScan(LaserScan):
                 cluster.append(float(coord[1]))
                 cluster.append(float(coord[2]))
                 cluster.append(
-                    np.array((float(coord[3]), float(coord[4]), float(coord[5])))
-                )
+                    np.array(
+                        (float(
+                            coord[3]), float(
+                            coord[4]), float(
+                            coord[5]))))
                 cluster.append(float(coord[6]))
                 bboxes.append(cluster)
         self.bboxes = bboxes

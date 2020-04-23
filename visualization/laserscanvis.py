@@ -146,7 +146,8 @@ class LaserScanVis:
         min_y, max_y = y_roi
         min_z, max_z = z_roi
 
-        for pcloud, i in zip(self.scan.points, range(len(self.scan.sem_label_color))):
+        for pcloud, i in zip(self.scan.points, range(
+                len(self.scan.sem_label_color))):
             if (
                 (pcloud[0] > 0)
                 & (pcloud[0] < max_x)
@@ -217,7 +218,8 @@ class LaserScanVis:
             colors = []
             pointcloud = []
             if self.roi_filter:
-                self.roi_filter_(pointcloud, colors, [0, 45], [-14, 14], [-2, 1])
+                self.roi_filter_(pointcloud, colors, [
+                                 0, 45], [-14, 14], [-2, 1])
             else:
                 for pcloud, i in zip(
                     self.scan.points, range(len(self.scan.sem_label_color))
@@ -300,7 +302,8 @@ class LaserScanVis:
         data[data > 0] = data[data > 0] ** (1 / power)
         data[data < 0] = data[data > 0].min()
         # print(data.max(), data.min())
-        data = (data - data[data > 0].min()) / (data.max() - data[data > 0].min())
+        data = (data - data[data > 0].min()) / \
+            (data.max() - data[data > 0].min())
         # print(data.max(), data.min())
         self.img_vis.set_data(data)
         self.img_vis.update()
