@@ -15,8 +15,12 @@ class BasicBlock(nn.Module):
         self.bn1 = nn.BatchNorm2d(planes[0], momentum=bn_d)
         self.relu1 = nn.LeakyReLU(0.1)
         self.conv2 = nn.Conv2d(
-            planes[0], planes[1], kernel_size=3, stride=1, padding=1, bias=False
-        )
+            planes[0],
+            planes[1],
+            kernel_size=3,
+            stride=1,
+            padding=1,
+            bias=False)
         self.bn2 = nn.BatchNorm2d(planes[1], momentum=bn_d)
         self.relu2 = nn.LeakyReLU(0.1)
 
@@ -110,15 +114,19 @@ class Backbone(nn.Module):
 
         # input layer
         self.conv1 = nn.Conv2d(
-            self.input_depth, 32, kernel_size=3, stride=1, padding=1, bias=False
-        )
+            self.input_depth,
+            32,
+            kernel_size=3,
+            stride=1,
+            padding=1,
+            bias=False)
         self.bn1 = nn.BatchNorm2d(32, momentum=self.bn_d)
         self.relu1 = nn.LeakyReLU(0.1)
 
         # encoder
         self.enc1 = self._make_enc_layer(
-            BasicBlock, [32, 64], self.blocks[0], stride=self.strides[0], bn_d=self.bn_d
-        )
+            BasicBlock, [
+                32, 64], self.blocks[0], stride=self.strides[0], bn_d=self.bn_d)
         self.enc2 = self._make_enc_layer(
             BasicBlock,
             [64, 128],
@@ -179,7 +187,9 @@ class Backbone(nn.Module):
         #  blocks
         inplanes = planes[1]
         for i in range(0, blocks):
-            layers.append(("residual_{}".format(i), block(inplanes, planes, bn_d)))
+            layers.append(
+                ("residual_{}".format(i), block(
+                    inplanes, planes, bn_d)))
 
         return nn.Sequential(OrderedDict(layers))
 

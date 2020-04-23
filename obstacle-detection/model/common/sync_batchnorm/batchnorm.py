@@ -206,6 +206,7 @@ class SynchronizedBatchNorm1d(_SynchronizedBatchNorm):
         >>> input = torch.autograd.Variable(torch.randn(20, 100))
         >>> output = m(input)
     """
+
     def _check_input_dim(self, input):
         if input.dim() != 2 and input.dim() != 3:
             raise ValueError(
@@ -269,6 +270,7 @@ class SynchronizedBatchNorm2d(_SynchronizedBatchNorm):
         >>> input = torch.autograd.Variable(torch.randn(20, 100, 35, 45))
         >>> output = m(input)
     """
+
     def _check_input_dim(self, input):
         if input.dim() != 4:
             raise ValueError(
@@ -333,6 +335,7 @@ class SynchronizedBatchNorm3d(_SynchronizedBatchNorm):
         >>> input = torch.autograd.Variable(torch.randn(20, 100, 35, 45, 10))
         >>> output = m(input)
     """
+
     def _check_input_dim(self, input):
         if input.dim() != 5:
             raise ValueError(

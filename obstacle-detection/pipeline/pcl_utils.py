@@ -182,7 +182,9 @@ def box_center(box):
     y_min, y_max = min(box[1]), max(box[1])
     z_min, z_max = min(box[2]), max(box[2])
 
-    return ((x_min + x_max) / 2.0, (y_min + y_max) / 2.0, (z_min + z_max) / 2.0)
+    return ((x_min + x_max) / 2.0,
+            (y_min + y_max) / 2.0,
+            (z_min + z_max) / 2.0)
 
 
 def get_min_max_box(box):

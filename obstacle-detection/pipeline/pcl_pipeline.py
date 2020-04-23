@@ -65,8 +65,10 @@ def pipeline_optimized_pcl(
         start_time = datetime.now()
         cluster_data = pcloud_roi.extract([], negative=True)
         cluster_indices = pcl_utils.clustering(
-            cluster_data, params["tol_distance"], params["min_cluster_size"], 150000
-        )
+            cluster_data,
+            params["tol_distance"],
+            params["min_cluster_size"],
+            150000)
         clustering_time = datetime.now() - start_time
 
         # get bboxes
@@ -86,7 +88,8 @@ def pipeline_optimized_pcl(
     if verbose:
         print("Execution time:")
         print("\n-ROI filtering: {:.5f}s".format(roi_time.total_seconds()))
-        print("\n-Filtering obstacles: {:.5f}s".format(obstacle_time.total_seconds()))
+        print(
+            "\n-Filtering obstacles: {:.5f}s".format(obstacle_time.total_seconds()))
         print("\n-Voxel grid: {:.5f}s".format(voxel_time.total_seconds()))
         print("\n-Clustering: {:.5f}s".format(clustering_time.total_seconds()))
         print(
