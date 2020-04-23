@@ -70,10 +70,9 @@ jobs:
         run: |
              docker system prune -a -f --volumes
              docker build -t ${{ secrets.USERNAME }}/$PROJECT_NAME:ver_$GITHUB_RUN_NUMBER $BUILD_DIR
-        continue-on-error: true
-      
+        
       - name: Docker Upload
         run: |
              docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD}}
-             docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.USERNAME }}:ver_$GITHUB_RUN_NUMBER
+             docker push ${{ secrets.DOCKERHUB_USERNAME }}/$PROJECT_NAME:ver_$GITHUB_RUN_NUMBER
         continue-on-error: true
