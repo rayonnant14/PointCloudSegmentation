@@ -70,6 +70,7 @@ jobs:
         run: |
              docker system prune -a
              docker build -t ${{ secrets.USERNAME }}/$PROJECT_NAME:ver_$GITHUB_RUN_NUMBER $BUILD_DIR
+        continue-on-error: true
       
       - name: Docker Upload
         run: |
