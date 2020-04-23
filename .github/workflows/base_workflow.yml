@@ -67,7 +67,9 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Docker build
-        run: docker build -t ${{ secrets.USERNAME }}/$PROJECT_NAME:ver_$GITHUB_RUN_NUMBER $BUILD_DIR
+        run: |
+             docker image prune
+             docker build -t ${{ secrets.USERNAME }}/$PROJECT_NAME:ver_$GITHUB_RUN_NUMBER $BUILD_DIR
       
       - name: Docker Upload
         run: |
