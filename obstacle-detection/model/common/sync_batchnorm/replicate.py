@@ -58,6 +58,7 @@ class DataParallelWithCallback(DataParallel):
         > sync_bn = DataParallelWithCallback(sync_bn, device_ids=[0, 1])
         # sync_bn.__data_parallel_replicate__ will be invoked.
     """
+
     def replicate(self, module, device_ids):
         modules = super(DataParallelWithCallback,
                         self).replicate(module, device_ids)

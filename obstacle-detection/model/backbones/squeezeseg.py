@@ -37,6 +37,7 @@ class Backbone(nn.Module):
     """
        Class for Squeezeseg. Subclasses PyTorch's own "nn" module
     """
+
     def __init__(self, params):
         # Call the super constructor
         super(Backbone, self).__init__()

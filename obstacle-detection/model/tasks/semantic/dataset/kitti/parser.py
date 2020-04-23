@@ -18,16 +18,16 @@ def is_label(filename):
 
 class SemanticKitti(Dataset):
     def __init__(
-        self,
-        root,  # directory where data is
-        sequences,  # sequences for this data (e.g. [1,3,4,6])
-        labels,  # label dict: (e.g 10: "car")
-        color_map,  # colors dict bgr (e.g 10: [255, 0, 0])
-        learning_map,  # classes to learn (0 to N-1 for xentropy)
-        learning_map_inv,  # inverse of previous (recover labels)
-        sensor,  # sensor to parse scans from
-        max_points=150000,  # max number of points present in dataset
-        gt=True):  # send ground truth?
+            self,
+            root,  # directory where data is
+            sequences,  # sequences for this data (e.g. [1,3,4,6])
+            labels,  # label dict: (e.g 10: "car")
+            color_map,  # colors dict bgr (e.g 10: [255, 0, 0])
+            learning_map,  # classes to learn (0 to N-1 for xentropy)
+            learning_map_inv,  # inverse of previous (recover labels)
+            sensor,  # sensor to parse scans from
+            max_points=150000,  # max number of points present in dataset
+            gt=True):  # send ground truth?
         # save deats
         self.root = os.path.join(root, "sequences")
         self.sequences = sequences
@@ -190,21 +190,21 @@ class SemanticKitti(Dataset):
 class Parser():
     # standard conv, BN, relu
     def __init__(
-        self,
-        root,  # directory for data
-        train_sequences,  # sequences to train
-        valid_sequences,  # sequences to validate.
-        test_sequences,  # sequences to test (if none, don't get)
-        labels,  # labels in data
-        color_map,  # color for each label
-        learning_map,  # mapping for training labels
-        learning_map_inv,  # recover labels from xentropy
-        sensor,  # sensor to use
-        max_points,  # max points in each scan in entire dataset
-        batch_size,  # batch size for train and val
-        workers,  # threads to load data
-        gt=False,  # get gt?
-        shuffle_train=True):  # shuffle training set?
+            self,
+            root,  # directory for data
+            train_sequences,  # sequences to train
+            valid_sequences,  # sequences to validate.
+            test_sequences,  # sequences to test (if none, don't get)
+            labels,  # labels in data
+            color_map,  # color for each label
+            learning_map,  # mapping for training labels
+            learning_map_inv,  # recover labels from xentropy
+            sensor,  # sensor to use
+            max_points,  # max points in each scan in entire dataset
+            batch_size,  # batch size for train and val
+            workers,  # threads to load data
+            gt=False,  # get gt?
+            shuffle_train=True):  # shuffle training set?
         super(Parser, self).__init__()
         print("parser started")
         # if I am training, get the dataset
