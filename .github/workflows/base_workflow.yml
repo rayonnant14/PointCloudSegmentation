@@ -10,6 +10,16 @@ on:
     
 jobs:
   
+  codeStyle:
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: action/chwckout@v2
+        
+      - name: wemake-python-styleguide
+        uses: wemake-services/wemake-python-styleguide@0.14.0
+     
+  
   CI:
     runs-on: [ubuntu-latest]
     
