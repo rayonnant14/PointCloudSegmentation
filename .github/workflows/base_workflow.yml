@@ -48,13 +48,11 @@ jobs:
         with:
           python-version: '3.x'
       
-      - name: Install python dependencies
-        run: python -m pip install --upgrade pip setuptools wheel
-      
       - name: Install tests dependencies
-        run: pip install -r tests/requirements.txt
+        run: |
+              python -m pip install 
+              --upgrade pippip install -r tests/requirements.txt
         
-      
       - name: accuracy tests
         run: cd tests && ./evaluate_iou.py -d testdata/data -p testdata/squeezeseg-pred/ --split train
         
