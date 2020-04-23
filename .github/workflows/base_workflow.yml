@@ -1,0 +1,21 @@
+name: CI
+
+env:
+  PROJECT_NAME PointCloudSegmentation
+  
+on:
+  push:
+    branches:
+      - github_workflow
+    
+jobs:
+  
+  CI:
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Docker version
+        run: docker -v
+     
