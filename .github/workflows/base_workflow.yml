@@ -37,6 +37,14 @@ jobs:
         if: steps.autopep8.outputs.exit-code == 2
         run: exit 1
       
+  tests:
+    runs-on: [ubuntu-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Python version
+        run: python -v
      
   
   CI:
