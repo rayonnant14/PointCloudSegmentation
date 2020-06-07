@@ -44,14 +44,8 @@ class Segmentator(nn.Module):
 
         decoderModule = imp.load_source(
             "decoderModule",
-<<<<<<< HEAD
-            '/home/jovyan/work/obstacle-detection/model/tasks/semantic/decoders/' +
-            self.ARCH["decoder"]["name"] +
-            '.py')
-=======
             '/home/jovyan/work/model/tasks/semantic/decoders/'
             + self.ARCH["decoder"]["name"] + '.py')
->>>>>>> upstream/master
         self.decoder = decoderModule.Decoder(
             params=self.ARCH["decoder"],
             stub_skips=stub_skips,
