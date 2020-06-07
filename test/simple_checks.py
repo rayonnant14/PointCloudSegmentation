@@ -1,3 +1,4 @@
+from pipeline import common
 import sys
 import yaml
 import glob
@@ -7,7 +8,6 @@ import numpy as np
 import pandas as pd
 
 sys.path.append('./obstacle-detection/')
-from pipeline import common
 
 scan_lst = sorted(glob.glob("./test/data/*.bin"))
 label_lst = sorted(glob.glob("./test/data/*.label"))
@@ -54,7 +54,13 @@ class TestClass:
             assert seg in list(obstacle_lst.keys())
 
     def test_roi_filter_1(self):
-        params = {'roi_x_min': -10, 'roi_x_max': 10, 'roi_y_min': -14, 'roi_y_max': 14, 'roi_z_min': -2, 'roi_z_max': 1}
+        params = {
+            'roi_x_min': -10,
+            'roi_x_max': 10,
+            'roi_y_min': -14,
+            'roi_y_max': 14,
+            'roi_z_min': -2,
+            'roi_z_max': 1}
         pcloud = get_pcloud(scan_lst[0], label_lst[0])
         cloud = common.roi_filter(pcloud,
                                   min_x=params["roi_x_min"],
