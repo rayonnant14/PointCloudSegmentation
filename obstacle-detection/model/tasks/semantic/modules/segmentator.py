@@ -44,21 +44,23 @@ class Segmentator(nn.Module):
 
         decoderModule = imp.load_source(
             "decoderModule",
-<<<<<<< HEAD
+<< << << < HEAD
             '/home/jovyan/work/obstacle-detection/model/tasks/semantic/decoders/' +
             self.ARCH["decoder"]["name"] +
             '.py')
-=======
+
+
+== == == =
             '/home/jovyan/work/model/tasks/semantic/decoders/'
             + self.ARCH["decoder"]["name"] + '.py')
->>>>>>> upstream/master
-        self.decoder = decoderModule.Decoder(
-            params=self.ARCH["decoder"],
-            stub_skips=stub_skips,
-            OS=self.ARCH["backbone"]["OS"],
-            feature_depth=self.backbone.get_last_depth())
+>> >>>> > upstream / master
+        self.decoder=decoderModule.Decoder(
+            params = self.ARCH["decoder"],
+            stub_skips = stub_skips,
+            OS = self.ARCH["backbone"]["OS"],
+            feature_depth = self.backbone.get_last_depth())
 
-        self.head = nn.Sequential(
+        self.head=nn.Sequential(
             nn.Dropout2d(p=ARCH["head"]["dropout"]),
             nn.Conv2d(self.decoder.get_last_depth(),
                       self.nclasses,
@@ -67,35 +69,35 @@ class Segmentator(nn.Module):
                       padding=1))
 
         if self.ARCH["post"]["CRF"]["use"]:
-            self.CRF = CRF(self.ARCH["post"]["CRF"]["params"],
+            self.CRF=CRF(self.ARCH["post"]["CRF"]["params"],
                            self.nclasses)
         else:
-            self.CRF = None
+            self.CRF=None
 
         # train backbone?
         if not self.ARCH["backbone"]["train"]:
             for w in self.backbone.parameters():
-                w.requires_grad = False
+                w.requires_grad=False
 
         # train decoder?
         if not self.ARCH["decoder"]["train"]:
             for w in self.decoder.parameters():
-                w.requires_grad = False
+                w.requires_grad=False
 
         # train head?
         if not self.ARCH["head"]["train"]:
             for w in self.head.parameters():
-                w.requires_grad = False
+                w.requires_grad=False
 
         # train CRF?
         if self.CRF and not self.ARCH["post"]["CRF"]["train"]:
             for w in self.CRF.parameters():
-                w.requires_grad = False
+                w.requires_grad=False
 
         # print number of parameters and the ones requiring gradients
         # print number of parameters and the ones requiring gradients
-        weights_total = sum(p.numel() for p in self.parameters())
-        weights_grad = sum(p.numel() for p in self.parameters()
+        weights_total=sum(p.numel() for p in self.parameters())
+        weights_grad=sum(p.numel() for p in self.parameters()
                            if p.requires_grad)
         print("Total number of parameters: ", weights_total)
         print("Total number of parameters requires_grad: ",
